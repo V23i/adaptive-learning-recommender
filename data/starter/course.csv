@@ -1,0 +1,7 @@
+course_id,title,subject_area,status,created_at
+CRS-000001,Python Fundamentals 1,Python,ACTIVE,2025-01-01
+CRS-000002,Statistics Fundamentals 2,Statistics,ACTIVE,2025-01-01
+CRS-000003,Databases Fundamentals 3,Databases,ACTIVE,2025-01-01
+CRS-000004,WebDev Fundamentals 4,WebDev,ACTIVE,2025-01-01
+CRS-000005,MachineLearning Fundamentals 5,MachineLearning,ACTIVE,2025-01-01
+CRS-000006,Cloud Fundamentals 6,Cloud,ACTIVE,2025-01-01

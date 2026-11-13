@@ -1,0 +1,5 @@
+data/full/
+__pycache__/
+*.pyc
+full_run.log
+*_repro_tmp/

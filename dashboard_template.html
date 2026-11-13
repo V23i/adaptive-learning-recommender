@@ -1,0 +1,43 @@
+<!doctype html><html lang="en"><head><meta charset="utf-8"><meta name="viewport" content="width=device-width, initial-scale=1, viewport-fit=cover"><title>Next-Step Learning Recommendations</title>
+<style>
+:root{--bg:#f6f7f9;--card:#fff;--tx:#1b1f24;--mu:#5d6773;--bd:#e1e5ea;--ok:#1a7f4b;--warn:#b7791f;--bad:#c53030;--ac:#2b5fd9;box-sizing:border-box;padding-top:env(safe-area-inset-top,0px);padding-bottom:env(safe-area-inset-bottom,0px)}
+@media(prefers-color-scheme:dark){:root:not([data-theme="light"]){--bg:#14171b;--card:#1d2127;--tx:#e8ebef;--mu:#9aa5b1;--bd:#2d333b;--ok:#4cc38a;--warn:#e0a84b;--bad:#f07178;--ac:#7aa2ff;color-scheme:dark}}
+:root[data-theme="dark"]{--bg:#14171b;--card:#1d2127;--tx:#e8ebef;--mu:#9aa5b1;--bd:#2d333b;--ok:#4cc38a;--warn:#e0a84b;--bad:#f07178;--ac:#7aa2ff;color-scheme:dark}
+html{scroll-padding-top:env(safe-area-inset-top,0px)}body{margin:0;background:var(--bg);color:var(--tx);font:15px/1.45 system-ui,-apple-system,Segoe UI,Roboto,sans-serif}
+main{max-width:980px;margin:0 auto;padding:16px}h1{font-size:20px;margin:0 0 4px}h2{font-size:15px;margin:0 0 10px}.mu{color:var(--mu);font-size:13px}
+.kpis{display:grid;grid-template-columns:repeat(auto-fit,minmax(150px,1fr));gap:10px;margin:14px 0}.card{background:var(--card);border:1px solid var(--bd);border-radius:12px;padding:14px}
+.kpi b{font-size:24px;display:block}select{width:100%;padding:10px;border-radius:8px;border:1px solid var(--bd);background:var(--card);color:var(--tx);font-size:15px}
+.grid{display:grid;grid-template-columns:1fr;gap:12px;margin-top:12px}@media(min-width:800px){.grid{grid-template-columns:1.2fr 1fr}}
+.rec{border-left:5px solid var(--ac);margin-bottom:10px}.rec h3{margin:0 0 4px;font-size:16px}.badge{display:inline-block;font-size:12px;padding:2px 8px;border-radius:99px;background:var(--bd);margin-right:6px}
+.pre{font-size:13px;margin:6px 0 0;padding:0;list-style:none}.pre li{padding:2px 0}.ok{color:var(--ok)}.no{color:var(--bad)}
+.bar{height:8px;background:var(--bd);border-radius:4px;position:relative;margin:3px 0 9px}.bar i{display:block;height:100%;border-radius:4px}.bar u{position:absolute;top:-3px;bottom:-3px;width:2px;background:var(--tx);opacity:.6;left:60%}
+.row{display:flex;justify-content:space-between;gap:8px;font-size:13px}.scroll{max-height:380px;overflow-y:auto}.h{padding:6px 0;border-bottom:1px solid var(--bd);font-size:13px;display:flex;justify-content:space-between;gap:8px}
+</style></head><body><main>
+<h1>What should this learner do next?</h1>
+<div class="mu">Every recommendation is checked: prerequisites must be mastered first, then difficulty is matched to the learner's current level.</div>
+<div class="kpis" id="kpis"></div>
+<div class="card"><label class="mu" for="sel">Choose a learner</label><select id="sel"></select></div>
+<div class="grid"><div><h2 style="margin-top:14px">Recommended next (best first)</h2><div id="recs"></div></div>
+<div><div class="card" style="margin-top:14px"><h2>Skill mastery <span class="mu">(line = 60% ready mark)</span></h2><div class="scroll" id="mast"></div></div>
+<div class="card" style="margin-top:12px"><h2>Recent attempts</h2><div id="hist"></div></div></div></div>
+<p class="mu">Rules engine rules-v1 on the synthetic starter dataset. Mastery = recency-weighted average of the last 5 scores per skill. KPIs are from the held-out test period (after 2026-07-01).</p>
+</main><script>
+const D=__DATA__;
+const WHY={COLD_START_DEFAULT:["Good first step","New learner with no history: starts with an entry-level item that has no prerequisites."],
+NEW_SKILL_UNLOCK:["New skill unlocked","All prerequisites are met and the learner has not tried this skill yet."],
+GAP_REMEDIATION:["Fix a weak spot","The learner is below 60% on this skill, so practice here comes first."],
+DIFFICULTY_MATCH:["Right level","Difficulty is matched to the learner's current mastery of this skill."],
+ENRICHMENT:["Stretch item","Skill already mastered; offered only because nothing more urgent is eligible."]};
+const pc=x=>x==null?"not started":Math.round(x*100)+"%",col=m=>m>=.8?"var(--ok)":m>=.6?"var(--ac)":m>=.4?"var(--warn)":"var(--bad)";
+const k=D.kpi;document.getElementById("kpis").innerHTML=[[Math.round(k.comp*100)+"%","Recommendations that respect prerequisites"],[Math.round(k.cov*100)+"%","Recommendations with a stated reason"],[Math.round(k.acc*100)+"%","Learners who took the suggestion"],[k.n.toLocaleString(),"Test-period recommendations resolved"]].map(a=>`<div class="card kpi"><b>${a[0]}</b><span class="mu">${a[1]}</span></div>`).join("");
+const sel=document.getElementById("sel");D.learners.forEach((l,i)=>sel.add(new Option(l.id+" - "+l.tag,i)));
+function show(){const l=D.learners[sel.value];
+document.getElementById("recs").innerHTML=l.recs.length?l.recs.map((r,i)=>{const w=WHY[r.code];const gap=r.diff-r.desired;
+const pre=r.pre.length?r.pre.map(p=>`<li class="${p.ok?"ok":"no"}">${p.ok?"&#10003;":"&#10007;"} ${p.n}: ${pc(p.m)} (needs ${Math.round(p.t*100)}%)</li>`).join(""):'<li class="ok">&#10003; No prerequisites needed</li>';
+return `<div class="card rec"><span class="badge">#${i+1}</span><span class="badge">${w[0]}</span><span class="badge">${r.fmt}</span><h3>${r.title}</h3>
+<div class="mu">Skill: ${r.skill} (now ${pc(r.m)}) &middot; Difficulty ${r.diff}/5 &middot; ${gap==0?"matches the learner's level":gap>0?"slightly harder than ideal":"slightly easier than ideal"}</div>
+<div style="margin-top:6px"><b>Why:</b> ${w[1]}</div><ul class="pre">${pre}</ul></div>`}).join(""):'<div class="card">No eligible item right now.</div>';
+document.getElementById("mast").innerHTML=l.mastery.length?l.mastery.map(s=>`<div class="row"><span>${s.n}</span><b>${pc(s.m)}</b></div><div class="bar"><i style="width:${s.m*100}%;background:${col(s.m)}"></i><u></u></div>`).join(""):'<span class="mu">No attempts yet.</span>';
+document.getElementById("hist").innerHTML=l.hist.length?l.hist.map(h=>`<div class="h"><span>${h.t}</span><b class="${h.p?"ok":"no"}">${h.s}% ${h.p?"pass":"fail"}</b></div>`).join(""):'<span class="mu">No attempts yet.</span>'}
+sel.onchange=show;show();
+</script></body></html>

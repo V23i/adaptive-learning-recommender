@@ -1,0 +1,8 @@
+[
+{"course_id": "CRS-000001", "title": "Python Fundamentals 1", "subject_area": "Python", "status": "ACTIVE", "created_at": "2025-01-01"},
+{"course_id": "CRS-000002", "title": "Statistics Fundamentals 2", "subject_area": "Statistics", "status": "ACTIVE", "created_at": "2025-01-01"},
+{"course_id": "CRS-000003", "title": "Databases Fundamentals 3", "subject_area": "Databases", "status": "ACTIVE", "created_at": "2025-01-01"},
+{"course_id": "CRS-000004", "title": "WebDev Fundamentals 4", "subject_area": "WebDev", "status": "ACTIVE", "created_at": "2025-01-01"},
+{"course_id": "CRS-000005", "title": "MachineLearning Fundamentals 5", "subject_area": "MachineLearning", "status": "ACTIVE", "created_at": "2025-01-01"},
+{"course_id": "CRS-000006", "title": "Cloud Fundamentals 6", "subject_area": "Cloud", "status": "ACTIVE", "created_at": "2025-01-01"}
+]

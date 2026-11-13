@@ -1,0 +1,84 @@
+{
+  "passed": true,
+  "table_rows": {
+    "learner": 500,
+    "course": 6,
+    "skill": 60,
+    "skill_prerequisite": 86,
+    "content_item": 200,
+    "content_skill": 259,
+    "learning_path": 942,
+    "learning_path_event": 4041,
+    "attempt": 10000,
+    "assessment_result": 988,
+    "recommendation": 1204,
+    "recommendation_event": 3111
+  },
+  "findings": {
+    "attempt_submitted_before_started": 10,
+    "fk:content_skill.skill_id": 5,
+    "path_loop_without_progress": 4,
+    "recommendation_basis_attempt_in_future": 5,
+    "recommendation_mastery_not_reproducible": 4,
+    "recommendation_prereq_unmet": 5
+  },
+  "unexplained_findings": {},
+  "injected_issue_detection": {
+    "REC_PREREQ_VIOLATION": {
+      "labelled": 5,
+      "detected": 5,
+      "true_pos": 5,
+      "false_pos": 0,
+      "false_neg": 0
+    },
+    "ATT_TIMESTAMP_ORDER": {
+      "labelled": 10,
+      "detected": 10,
+      "true_pos": 10,
+      "false_pos": 0,
+      "false_neg": 0
+    },
+    "CONTENT_SKILL_ORPHAN": {
+      "labelled": 5,
+      "detected": 5,
+      "true_pos": 5,
+      "false_pos": 0,
+      "false_neg": 0
+    },
+    "MASTERY_FUTURE_LEAK": {
+      "labelled": 5,
+      "detected": 5,
+      "true_pos": 5,
+      "false_pos": 0,
+      "false_neg": 0
+    },
+    "PATH_LOOP": {
+      "labelled": 4,
+      "detected": 4,
+      "true_pos": 4,
+      "false_pos": 0,
+      "false_neg": 0
+    }
+  },
+  "natural_prereq_gap_attempts": {
+    "labelled": 2408,
+    "recomputed": 2408,
+    "identical": true
+  },
+  "checks_run": [
+    "schema",
+    "pk_unique",
+    "fk_integrity",
+    "enums_ranges",
+    "dag_acyclic",
+    "date_ordering",
+    "arithmetic(duration,passed,attempt_no)",
+    "mastery_reproducible(recompute from attempts)",
+    "no_future_data",
+    "prerequisites_respected",
+    "reason_codes_present",
+    "lifecycle(path,recommendation)",
+    "duplicates",
+    "ground_truth_not_in_inputs"
+  ]
+}

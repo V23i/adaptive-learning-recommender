@@ -1,0 +1,30 @@
+issue_id,issue_type,entity,entity_id,learner_id,detection_rule,description
+ISS-000001,REC_PREREQ_VIOLATION,recommendation,REC-000141,LRN-000062,recomputed prereq_margin < 0 at issued_at,recommended CNT-000066 while a prerequisite is below its threshold (margin -0.6)
+ISS-000002,REC_PREREQ_VIOLATION,recommendation,REC-001202,LRN-000499,recomputed prereq_margin < 0 at issued_at,recommended CNT-000058 while a prerequisite is below its threshold (margin -0.6)
+ISS-000003,REC_PREREQ_VIOLATION,recommendation,REC-000977,LRN-000401,recomputed prereq_margin < 0 at issued_at,recommended CNT-000128 while a prerequisite is below its threshold (margin -0.6)
+ISS-000004,REC_PREREQ_VIOLATION,recommendation,REC-000416,LRN-000178,recomputed prereq_margin < 0 at issued_at,recommended CNT-000047 while a prerequisite is below its threshold (margin -0.6)
+ISS-000005,REC_PREREQ_VIOLATION,recommendation,REC-000928,LRN-000379,recomputed prereq_margin < 0 at issued_at,recommended CNT-000027 while a prerequisite is below its threshold (margin -0.6)
+ISS-000006,MASTERY_FUTURE_LEAK,recommendation,REC-000499,LRN-000204,as_of_attempt.submitted_at > issued_at,mastery computed with future attempt ATT-LRN-000204-000026
+ISS-000007,MASTERY_FUTURE_LEAK,recommendation,REC-001056,LRN-000432,as_of_attempt.submitted_at > issued_at,mastery computed with future attempt ATT-LRN-000432-000034
+ISS-000008,MASTERY_FUTURE_LEAK,recommendation,REC-000418,LRN-000178,as_of_attempt.submitted_at > issued_at,mastery computed with future attempt ATT-LRN-000178-000062
+ISS-000009,MASTERY_FUTURE_LEAK,recommendation,REC-000776,LRN-000313,as_of_attempt.submitted_at > issued_at,mastery computed with future attempt ATT-LRN-000313-000036
+ISS-000010,MASTERY_FUTURE_LEAK,recommendation,REC-000158,LRN-000070,as_of_attempt.submitted_at > issued_at,mastery computed with future attempt ATT-LRN-000070-000028
+ISS-000011,ATT_TIMESTAMP_ORDER,attempt,ATT-LRN-000010-000003,LRN-000010,submitted_at < started_at (and duration_sec != submitted-started),started_at and submitted_at swapped
+ISS-000012,ATT_TIMESTAMP_ORDER,attempt,ATT-LRN-000063-000001,LRN-000063,submitted_at < started_at (and duration_sec != submitted-started),started_at and submitted_at swapped
+ISS-000013,ATT_TIMESTAMP_ORDER,attempt,ATT-LRN-000071-000020,LRN-000071,submitted_at < started_at (and duration_sec != submitted-started),started_at and submitted_at swapped
+ISS-000014,ATT_TIMESTAMP_ORDER,attempt,ATT-LRN-000125-000008,LRN-000125,submitted_at < started_at (and duration_sec != submitted-started),started_at and submitted_at swapped
+ISS-000015,ATT_TIMESTAMP_ORDER,attempt,ATT-LRN-000164-000020,LRN-000164,submitted_at < started_at (and duration_sec != submitted-started),started_at and submitted_at swapped
+ISS-000016,ATT_TIMESTAMP_ORDER,attempt,ATT-LRN-000183-000007,LRN-000183,submitted_at < started_at (and duration_sec != submitted-started),started_at and submitted_at swapped
+ISS-000017,ATT_TIMESTAMP_ORDER,attempt,ATT-LRN-000328-000008,LRN-000328,submitted_at < started_at (and duration_sec != submitted-started),started_at and submitted_at swapped
+ISS-000018,ATT_TIMESTAMP_ORDER,attempt,ATT-LRN-000348-000019,LRN-000348,submitted_at < started_at (and duration_sec != submitted-started),started_at and submitted_at swapped
+ISS-000019,ATT_TIMESTAMP_ORDER,attempt,ATT-LRN-000408-000026,LRN-000408,submitted_at < started_at (and duration_sec != submitted-started),started_at and submitted_at swapped
+ISS-000020,ATT_TIMESTAMP_ORDER,attempt,ATT-LRN-000436-000011,LRN-000436,submitted_at < started_at (and duration_sec != submitted-started),started_at and submitted_at swapped
+ISS-000021,CONTENT_SKILL_ORPHAN,content_skill,CNT-000024|SKL-900001,,content_skill.skill_id not in skill,CNT-000024 mapped to nonexistent SKL-900001
+ISS-000022,CONTENT_SKILL_ORPHAN,content_skill,CNT-000122|SKL-900002,,content_skill.skill_id not in skill,CNT-000122 mapped to nonexistent SKL-900002
+ISS-000023,CONTENT_SKILL_ORPHAN,content_skill,CNT-000159|SKL-900003,,content_skill.skill_id not in skill,CNT-000159 mapped to nonexistent SKL-900003
+ISS-000024,CONTENT_SKILL_ORPHAN,content_skill,CNT-000191|SKL-900004,,content_skill.skill_id not in skill,CNT-000191 mapped to nonexistent SKL-900004
+ISS-000025,CONTENT_SKILL_ORPHAN,content_skill,CNT-000192|SKL-900005,,content_skill.skill_id not in skill,CNT-000192 mapped to nonexistent SKL-900005
+ISS-000026,PATH_LOOP,learning_path,PATH-2026-000095,LRN-000056,">=5 consecutive STEP_REVISITED events, <=2 distinct contents, unchanged mastery_after",path alternates between CNT-000172 and CNT-000126 without mastery change
+ISS-000027,PATH_LOOP,learning_path,PATH-2026-000267,LRN-000142,">=5 consecutive STEP_REVISITED events, <=2 distinct contents, unchanged mastery_after",path alternates between CNT-000057 and CNT-000133 without mastery change
+ISS-000028,PATH_LOOP,learning_path,PATH-2026-000052,LRN-000028,">=5 consecutive STEP_REVISITED events, <=2 distinct contents, unchanged mastery_after",path alternates between CNT-000139 and CNT-000051 without mastery change
+ISS-000029,PATH_LOOP,learning_path,PATH-2026-000361,LRN-000194,">=5 consecutive STEP_REVISITED events, <=2 distinct contents, unchanged mastery_after",path alternates between CNT-000127 and CNT-000006 without mastery change
